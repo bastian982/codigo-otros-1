@@ -1,22 +1,23 @@
 const baseEndpoint = 'https://api.github.com';
 const usersEndpoint = `${baseEndpoint}/users`;
-const $n = document.querySelector('name');
-const $b = document.querySelector('#blog');
-const $l = document.querySelector('.location');
+const nameGit = document.querySelector('.name'); // falta el selector (.) para seleccionar la clase name, cambiar el nombre de la variable para que sea mas entendible
+const blogGit = document.querySelector('.blog'); //  blog es una clase, cambiar el nombre de la variable para que sea mas entendible
+const locationGit = document.querySelector('.location'); // cambiar el nombre de la variable para que sea mas entendible
 
-function displayUser(username) {
-  $n.textContent = 'cargando...';
+async function displayUser(username) { // falta el async para que la función sea asincrona
+  nameGit.textContent = 'cargando...';
   const response = await fetch(`${usersEndpoint}/${username}`);
+  const data = await response.json();
   console.log(data);
-  $n.textContent = '${data.name}';
-  $b.textContent = '${data.blog}';
-  $l.textContent = '${data.location}';
+  nameGit.textContent = '${data.name}';
+  blogGit.textContent = '${data.blog}';
+  locationGit.textContent = '${data.location}';
 }
 
 function handleError(err) {
   console.log('OH NO!');
   console.log(err);
-  n.textContent = `Algo salió mal: ${err}`
+  nameGit.textContent = `Algo salió mal: ${err}` 
 }
 
 displayUser('stolinski').catch(handleError);
